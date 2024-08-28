@@ -10,6 +10,9 @@ var y = blockSize * 4;
 
 var speedX = 0;
 var speedY = 0;
+
+var body = [];
+
 //food
 var fx ;
 var fy ;
@@ -35,6 +38,7 @@ function update(){
     context.fillRect(fx , fy , blockSize, blockSize);
 
     if ( x == fx && y == fy ){  // same square
+        body.push([fx , fy ]) //grow the segment 
         Food();
 
     }
@@ -43,9 +47,11 @@ function update(){
     x += speedX * blockSize;
     y += speedY * blockSize;
     context.fillRect(x,y, blockSize, blockSize); // coordinates + width+height 
+    for(let i = 0 ; i< body.length ; i++){
+        context.fillRect(body[i][0],body[i][1], blockSize, blockSize);
+    }
 
-    context.fillStyle= "red"; // the color of the food 
-    context.fillRect(fx , fy , blockSize, blockSize);
+   
 }
 function Direction(e) {
     if (e.code == "ArrowUp" && speedY != 1) { //if you go up
