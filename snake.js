@@ -48,22 +48,22 @@ function update(){
     context.fillRect(fx , fy , blockSize, blockSize);
 }
 function Direction(e) {
-    if (e.code == "ArrowUp") { //if you go up
+    if (e.code == "ArrowUp" && speedY != 1) { //if you go up
         speedX = 0;
         speedY = -1;
 
     }
-   else if (e.code == "ArrowDown"){ //if you go Down
+   else if (e.code == "ArrowDown" && speedY != -1){ //if you go Down
         speedX = 0;
         speedY = 1;
 
     }
-    else if (e.code == "ArrowLeft"){ //if you go left
+    else if (e.code == "ArrowLeft" && speedX != 1){ //if you go left
         speedX = -1;
         speedY = 0;
 
     }
-   else if (e.code == "ArrowRight"){ //if you go right
+   else if (e.code == "ArrowRight" && speedX != -1){ //if you go right
         speedX = 1;
         speedY = 0;
 
