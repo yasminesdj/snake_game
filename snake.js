@@ -31,6 +31,14 @@ function update(){
     context.fillStyle="black"; //change the color of the pen to black
     context.fillRect(0, 0, board.width, board.height); //filling 500 (25*20)
 
+    context.fillStyle= "red"; // the color of the food 
+    context.fillRect(fx , fy , blockSize, blockSize);
+
+    if ( x == fx && y == fy ){  // same square
+        Food();
+
+    }
+
     context.fillStyle= "green"; //the color of the snake 
     x += speedX * blockSize;
     y += speedY * blockSize;
