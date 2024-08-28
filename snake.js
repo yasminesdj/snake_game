@@ -8,8 +8,8 @@ var context;
 var x = blockSize * 4;
 var y = blockSize * 4;
 //food
-var fx = blockSize * 10;
-var fy = blockSize * 10;
+var fx ;
+var fy ;
 
 
 
@@ -18,6 +18,7 @@ window.onload = function() {
     board.height = row * blockSize;
     board.width = col * blockSize;
     context = board.getContext("2d"); // to draw on the board
+    Food(); // to replace the food randomly every time while refresh
     update();
 }
 function update(){
@@ -29,4 +30,10 @@ function update(){
 
     context.fillStyle= "red"; // the color of the food 
     context.fillRect(fx , fy , blockSize, blockSize);
+}
+
+function Food() {
+    fx = Math.floor(Math.random() * col) * blockSize;
+    fy = Math.floor(Math.random() * row) * blockSize;  // we dont need to initialize fx and fy anymore 
+
 }
