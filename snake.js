@@ -17,6 +17,8 @@ var body = [];
 var fx ;
 var fy ;
 
+//gameover
+var gameOver = false;
 
 
 window.onload = function() {
@@ -31,6 +33,9 @@ window.onload = function() {
     setInterval(update, 1000/10); // 1000 milliseconds 
 }
 function update(){
+    if (gameOver){
+        return;
+    }
     context.fillStyle="black"; //change the color of the pen to black
     context.fillRect(0, 0, board.width, board.height); //filling 500 (25*20)
 
@@ -57,6 +62,18 @@ function update(){
         context.fillRect(body[i][0],body[i][1], blockSize, blockSize);
     }
 
+    // conditions of the game over
+    if( x < 0 || x > col*blockSize || y < 0 || y > row*blockSize){
+        gameOver = true;
+        alert("GAME OVER");
+    }
+    
+ for(let i= 0; i < body.length; i++){ 
+    if(x == body[i][0] && y == body[i][1]){
+        gameOver = true;
+        alert("GAME OVER"); 
+    }
+ }
    
 }
 function Direction(e) {
