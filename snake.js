@@ -7,8 +7,9 @@ var context;
 //snake 
 var x = blockSize * 4;
 var y = blockSize * 4;
+
 var speedX = 0;
-var speedy = 0;
+var speedY = 0;
 //food
 var fx ;
 var fy ;
@@ -20,32 +21,41 @@ window.onload = function() {
     board.height = row * blockSize;
     board.width = col * blockSize;
     context = board.getContext("2d"); // to draw on the board
+
     Food(); // to replace the food randomly every time while refresh
     document.addEventListener("keyup" , Direction);
-    update();
+    // update(); we want to call it multiple times 
+    setInterval(update, 1000/10); // 1000 milliseconds 
 }
 function update(){
     context.fillStyle="black"; //change the color of the pen to black
     context.fillRect(0, 0, board.width, board.height); //filling 500 (25*20)
 
-    context.fillStyle= "green" //the color of the snake 
+    context.fillStyle= "green"; //the color of the snake 
+    x += speedX * blockSize;
+    y += speedY * blockSize;
     context.fillRect(x,y, blockSize, blockSize); // coordinates + width+height 
 
     context.fillStyle= "red"; // the color of the food 
     context.fillRect(fx , fy , blockSize, blockSize);
 }
-function Direction(event) {
-    if (event.code == "ArrowUp"){ //if you go up
+function Direction(e) {
+    if (e.code == "ArrowUp") { //if you go up
         speedX = 0;
         speedY = -1;
 
     }
-   else if (event.code == "Arrowleft"){ //if you go left
+   else if (e.code == "ArrowDown"){ //if you go Down
+        speedX = 0;
+        speedY = 1;
+
+    }
+    else if (e.code == "ArrowLeft"){ //if you go left
         speedX = -1;
         speedY = 0;
 
     }
-    if (event.code == "Arrowright"){ //if you go right
+   else if (e.code == "ArrowRight"){ //if you go right
         speedX = 1;
         speedY = 0;
 
