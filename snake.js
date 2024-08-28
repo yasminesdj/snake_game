@@ -42,6 +42,12 @@ function update(){
         Food();
 
     }
+    for (let i= body.length-1; i>0 ; i-- ){
+        body[i]= body[i-1];
+    }
+    if(body.length){
+        body[0] = [x,y];
+    }
 
     context.fillStyle= "green"; //the color of the snake 
     x += speedX * blockSize;
